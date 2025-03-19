@@ -11,7 +11,6 @@ from app.core.security_headers import add_security_headers
 from pathlib import Path
 from app.database.base import Base
 from app.database.session import engine
-from app.api import auth
 
 # Set up logging
 setup_logging(log_path=Path("logs/app.log"))
@@ -48,7 +47,6 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 @app.get("/")

@@ -40,11 +40,19 @@ export default function Login() {
     try {
       setIsLoading(true);
       await login(data.email, data.password);
+      toast({
+        title: 'Success',
+        description: 'Successfully logged in!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
       router.push('/dashboard');
     } catch (error) {
+      console.error('Login error:', error);
       toast({
-        title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to login',
+        title: 'Login Failed',
+        description: error instanceof Error ? error.message : 'Invalid email or password',
         status: 'error',
         duration: 5000,
         isClosable: true,
